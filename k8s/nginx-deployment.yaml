@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nitishmedhi/my-analytics:latest
+        image: nitishmedhi/my-analytics:${{ github.sha }}
         ports:
         - containerPort: 80
