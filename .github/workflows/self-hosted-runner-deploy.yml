@@ -1,4 +1,4 @@
-name: Deploy to Kubernetes (Docker Desktop)
+name: Deploy to Kubernetes Self-hosted-Runner(Docker Desktop)
 
 on:
   workflow_dispatch: # Trigger manually via GitHub UI or with specific events if required
