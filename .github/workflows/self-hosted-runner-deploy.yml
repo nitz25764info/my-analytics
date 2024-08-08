@@ -29,5 +29,5 @@ jobs:
 
       - name: Apply Kubernetes Deployment
         run: |
-          kubectl set image deployment/nginx-deployment nginx=nitishmedhi/my-analytics:latest
+          kubectl set image deployment/nginx-deployment nginx=nitishmedhi/my-analytics:latest -n my-analytics
           kubectl apply -f k8s/nginx-deployment.yaml -n my-analytics
