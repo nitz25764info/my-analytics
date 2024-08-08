@@ -15,6 +15,8 @@ jobs:
         uses: azure/setup-kubectl@v1
         with:
           version: 'latest'
+      - name: Echo home directory
+        run: echo $HOME
           
       - name: Create .kube directory
         run: mkdir -p $HOME/.kube
