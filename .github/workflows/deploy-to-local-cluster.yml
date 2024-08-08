@@ -15,6 +15,9 @@ jobs:
         uses: azure/setup-kubectl@v1
         with:
           version: 'latest'
+          
+      - name: Create .kube directory
+        run: mkdir -p $HOME/.kube
 
       - name: Set KUBECONFIG for Docker Desktop
         run: echo "${{ secrets.KUBECONFIG_CONTENT }}" > $HOME/.kube/config
@@ -27,5 +30,5 @@ jobs:
 
       - name: Apply Kubernetes Deployment
         run: |
-          kubectl set image deployment/nginx-deployment nginx=yourdockerhubusername/yourimage:latest
+          kubectl set image deployment/nginx-deployment nginx=nitishmedhi/my-analytics:latest
           kubectl apply -f k8s/nginx-deployment.yaml
