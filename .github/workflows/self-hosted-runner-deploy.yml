@@ -15,14 +15,12 @@ jobs:
         uses: azure/setup-kubectl@v1
         with:
           version: 'latest'
-      - name: Echo home directory
-        run: echo $HOME
-          
+     
       - name: Create .kube directory
-        run: mkdir -p $HOME/.kube
+        run: mkdir -p ~/.kube
 
       - name: Set KUBECONFIG for Docker Desktop
-        run: echo "${{ secrets.KUBECONFIG_CONTENT }}" > $HOME/.kube/config
+        run: echo "${{ secrets.KUBECONFIG_CONTENT }}" > ~/.kube/config
 
       - name: Docker Login
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
