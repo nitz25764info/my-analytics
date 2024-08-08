@@ -10,17 +10,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Setup kubectl
-        uses: azure/setup-kubectl@v1
-        with:
-          version: 'latest'
-     
-      - name: Create .kube directory
-        run: mkdir -p ~/.kube
-
-      - name: Set KUBECONFIG for Docker Desktop
-        run: echo "${{ secrets.KUBECONFIG_CONTENT }}" > ~/.kube/config
+        
+      - name: Set up Kubernetes context
+        run: |
+          kubectl config use-context docker-desktop
 
       - name: Docker Login
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
