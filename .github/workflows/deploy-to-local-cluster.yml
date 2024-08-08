@@ -26,9 +26,9 @@ jobs:
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
       - name: Pull Docker Image
-        run: docker pull nitishmedhi/my-analytics:latest
+        run: docker pull nitishmedhi/my-analytics:${{ github.sha }}
 
       - name: Apply Kubernetes Deployment
         run: |
-          kubectl set image deployment/nginx-deployment nginx=nitishmedhi/my-analytics:latest
+          kubectl set image deployment/nginx-deployment nginx=nitishmedhi/my-analytics:${{ github.sha }}
           kubectl apply -f k8s/nginx-deployment.yaml
