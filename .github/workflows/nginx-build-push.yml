@@ -28,5 +28,5 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: nitishmedhi/my-analytics:${{ github.sha }}
+          tags: nitishmedhi/my-analytics:latest
           platforms: linux/amd64,linux/arm64
