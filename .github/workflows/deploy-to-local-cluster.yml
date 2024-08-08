@@ -1,0 +1,31 @@
+name: Deploy to Kubernetes (Docker Desktop)
+
+on:
+  workflow_dispatch: # Trigger manually via GitHub UI or with specific events if required
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v1
+        with:
+          version: 'latest'
+
+      - name: Set KUBECONFIG for Docker Desktop
+        run: echo "${{ secrets.KUBECONFIG_CONTENT }}" > $HOME/.kube/config
+
+      - name: Docker Login
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+
+      - name: Pull Docker Image
+        run: docker pull nitishmedhi/my-analytics:latest
+
+      - name: Apply Kubernetes Deployment
+        run: |
+          kubectl set image deployment/nginx-deployment nginx=yourdockerhubusername/yourimage:latest
+          kubectl apply -f k8s/nginx-deployment.yaml
