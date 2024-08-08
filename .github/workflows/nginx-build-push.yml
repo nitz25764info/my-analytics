@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Use a secret
-        run: echo "The secret is ${{ secrets.MY_SECRET }}"
+        run: echo "The secret is ${{ secrets.DOCKER_USERNAME }}"
         
       - name: Checkout code
         uses: actions/checkout@v2
