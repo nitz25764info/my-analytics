@@ -35,3 +35,6 @@ jobs:
       - name: Rollout status
         run: |
           kubectl rollout status deployment/nginx-deployment -n my-analytics
+      #this is a fallback check y image is not updated
+      - name: Rollout restart
+        run: kubectl rollout restart deployment/nginx-deployment -n my-analytics
